@@ -27,7 +27,7 @@ namespace Elixir.Controllers
         public async Task<ActionResult<CategoryDto>> CreateCategory([FromBody] CategoryForm form) => Ok(await _service.CreateCategory(form));
         
         [Authorize(Roles = "Admin,SuperAdmin")]
-        [HttpPost("{id}")]
+        [HttpPost("sub-category/{id}")]
         public async Task<ActionResult<CategoryDto>> CreateSubCategory(Guid id, [FromBody] SubCategoryForm form) => Ok(await _service.CreateSubCategory(form, id));
 
         [Authorize]

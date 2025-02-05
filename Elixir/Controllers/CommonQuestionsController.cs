@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Elixir.Controllers
 {
-
+    [ApiController]
+    [Route("api/common-questions")]
     public class CommonQuestionsController : BaseController
     {
         private readonly ICommonQuestionService _service;
