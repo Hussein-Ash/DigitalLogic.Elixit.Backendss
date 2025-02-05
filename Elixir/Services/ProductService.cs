@@ -14,9 +14,9 @@ public interface IProductService
 
     Task<(ProductDto? dto, string? error)> Add(ProductForm form);
 
-    Task<(ProductDto? dto, string? error)> Update(Guid id, ProductUpdate update,Guid storeId);
+    Task<(ProductDto? dto, string? error)> Update(Guid id, ProductUpdate update);
 
-    Task<(ProductDto? Dto, string? error)> Delete(Guid id,Guid storeId);
+    Task<(ProductDto? Dto, string? error)> Delete(Guid id);
 
     Task<(ProductDto? Dto, string? error)> GetyById(Guid id);
 }
@@ -45,10 +45,10 @@ public class ProductService : IProductService
         return (ProductDto, null);
     }
 
-    public async Task<(ProductDto? Dto, string? error)> Delete(Guid id,Guid storeId)
+    public async Task<(ProductDto? Dto, string? error)> Delete(Guid id)
     {   
-        var storeExist = await _dbContext.Stores.FirstOrDefaultAsync(x=>x.Id == storeId);
-        if (storeExist == null) return (null, "store not found");
+        // var storeExist = await _dbContext.Stores.FirstOrDefaultAsync(x=>x.Id == storeId);
+        // if (storeExist == null) return (null, "store not found");
 
         var product = await _dbContext.Products.Include(x=>x.Store).FirstOrDefaultAsync(x => x.Id == id && x.Deleted == false);
         if (product == null) return (null, "product not found");
@@ -82,10 +82,10 @@ public class ProductService : IProductService
         return (productDto, null);
     }
 
-    public async Task<(ProductDto? dto, string? error)> Update(Guid id, ProductUpdate update,Guid storeId)
+    public async Task<(ProductDto? dto, string? error)> Update(Guid id, ProductUpdate update)
     {
-        var storeExist = await _dbContext.Stores.FirstOrDefaultAsync(x=>x.Id == storeId);
-        if (storeExist == null) return (null, "store not found");
+        // var storeExist = await _dbContext.Stores.FirstOrDefaultAsync(x=>x.Id == storeId);
+        // if (storeExist == null) return (null, "store not found");
         
         var existingProduct = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id && x.Deleted == false);
         if (existingProduct == null) return (null, "Product not found");
