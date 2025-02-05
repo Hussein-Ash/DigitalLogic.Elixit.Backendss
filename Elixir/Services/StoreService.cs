@@ -81,7 +81,9 @@ public class StoreService : IStoreService
         var query = _context.Stores
         .AsNoTracking()
         .Include(x => x.Employees)
-        .Where(w => !w.Deleted && (w.OwnerId == userId || w.Employees.Any(x => x.UserId == userId)));
+        .Where(w => !w.Deleted );
+
+        // .Where(w => !w.Deleted && (w.OwnerId == userId || w.Employees.Any(x => x.UserId == userId)));
 
         var totalCount = await query.CountAsync();
         var stores = await query
