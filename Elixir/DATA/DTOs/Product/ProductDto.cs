@@ -19,6 +19,8 @@ public class ProductDto : BaseDto<Guid>
 
     public int Stock { get; set; }  
 
+    public string? Thumbnail { get; set; }
+
     public string? Url1080 { get; set; }
     public string? Url720 { get; set; }
     public string? Url480 { get; set; }
