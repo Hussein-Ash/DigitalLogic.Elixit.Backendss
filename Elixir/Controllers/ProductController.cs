@@ -29,11 +29,11 @@ namespace Elixir.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Respons<ProductDto>>> GetById(Guid id) => Ok(await _service.GetyById(id));
 
-        [StoreAuthorize]
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id) => Ok(await _service.Delete(id,Id));
 
-        [StoreAuthorize]
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(ProductUpdate update ,Guid id) => Ok(await _service.Update(id,update,Id));
 
